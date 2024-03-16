@@ -1,17 +1,28 @@
 """Create database and tables for the project"""
 
 import sqlite3
+from config import LOGS_DIR
 from common import get_database_path
+import logging
+import os
+
+logging.basicConfig(
+    filename=os.path.join(LOGS_DIR, "create_database.log"),
+    level=logging.INFO,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+)
 
 def create_database():
     """Creates database and tables"""
+    logging.info(f"Creating database -> {get_database_path()}")
     conn = sqlite3.connect(get_database_path())
-    print(f"Dtabase created -> {get_database_path()}")
     conn.close()
+    logging.info(f"Database created -> {get_database_path()}")
 
 
 def create_tables():
     """Creates tables"""
+    logging.info("Creating tables")
     conn = sqlite3.connect(get_database_path())
     c = conn.cursor()
     c.execute(
@@ -40,6 +51,7 @@ def create_tables():
     )
     conn.commit()
     conn.close()
+    logging.info("Tables created")
 
 
 def main():
