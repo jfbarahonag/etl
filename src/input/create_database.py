@@ -1,19 +1,18 @@
 """Create database and tables for the project"""
 
 import sqlite3
-
-DATABASE_PATH = "datalake/databases/house_prices.db"
-
+from common import get_database_path
 
 def create_database():
     """Creates database and tables"""
-    conn = sqlite3.connect(DATABASE_PATH)
+    conn = sqlite3.connect(get_database_path())
+    print(f"Dtabase created -> {get_database_path()}")
     conn.close()
 
 
 def create_tables():
     """Creates tables"""
-    conn = sqlite3.connect(DATABASE_PATH)
+    conn = sqlite3.connect(get_database_path())
     c = conn.cursor()
     c.execute(
         """CREATE TABLE IF NOT EXISTS house_prices (

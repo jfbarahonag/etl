@@ -2,13 +2,13 @@
 
 import sqlite3
 
-DATABASE_PATH = "datalake/databases/house_prices.db"
+from common import get_database_path
 
 
 def simple_query():
     """Simple query for testing purposes"""
     query = "SELECT * FROM house_prices LIMIT 5"
-    conn = sqlite3.connect(DATABASE_PATH)
+    conn = sqlite3.connect(get_database_path())
     result = conn.execute(query).fetchall()
     conn.close()
     for t in result:

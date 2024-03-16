@@ -7,15 +7,12 @@ import sqlite3
 
 import pandas as pd
 
-STAGGING_PATH = "datalake/raw/stagging/"
-INGESTED_PATH = "datalake/raw/ingested/"
-DATABASE_PATH = "datalake/databases/house_prices.db"
-LOGS_PATH = "datalake/logs/"
-
+from config import STAGGING_DIR, INGESTED_DIR
+from common import get_database_path
 
 def extract():
     """Extracts data from csv file"""
-    filenames = glob.glob(STAGGING_PATH + "*.csv.zip")
+    filenames = glob.glob(STAGGING_DIR + "*.csv.zip")
     dataframes = [pd.read_csv(f, compression="zip") for f in filenames]
     data = pd.concat(dataframes)
     return data
@@ -29,15 +26,15 @@ def transform(data):
 
 def load(data):
     """Loads data to database"""
-    conn = sqlite3.connect(DATABASE_PATH)
+    conn = sqlite3.connect(get_database_path())
     data.to_sql("house_prices", conn, if_exists="replace", index=False)
     conn.close()
 
 
 def move_files():
     """Moves files from stagging to ingested folder"""
-    for filename in glob.glob(STAGGING_PATH + "*.csv.zip"):
-        shutil.move(filename, INGESTED_PATH + os.path.basename(filename))
+    for filename in glob.glob(STAGGING_DIR + "*.csv.zip"):
+        shutil.move(filename, INGESTED_DIR + os.path.basename(filename))
 
 
 def etl():

@@ -2,18 +2,14 @@
 
 import os
 
-STAGGING_PATH = "datalake/raw/stagging/"
-INGESTED_PATH = "datalake/raw/ingested/"
-DATABASE_PATH = "datalake/databases/"
-LOGS_PATH = "datalake/logs/"
-
+from config import STAGGING_DIR, INGESTED_DIR, DATABASE_DIR, LOGS_DIR
 
 def create_datalake():
     """Create the datalake"""
-    os.makedirs(STAGGING_PATH, exist_ok=True)
-    os.makedirs(INGESTED_PATH, exist_ok=True)
-    os.makedirs(DATABASE_PATH, exist_ok=True)
-    os.makedirs(LOGS_PATH, exist_ok=True)
+    os.makedirs(STAGGING_DIR, exist_ok=True)
+    os.makedirs(INGESTED_DIR, exist_ok=True)
+    os.makedirs(DATABASE_DIR, exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
 
 
 if __name__ == "__main__":
