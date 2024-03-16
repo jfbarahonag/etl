@@ -1,8 +1,7 @@
 """Create database and tables for the project"""
 
 import sqlite3
-from config import LOGS_DIR
-from common import get_database_path
+from common import LOGS_DIR, get_database_path
 import logging
 import os
 

@@ -2,7 +2,7 @@
 
 import os
 
-from config import STAGGING_DIR, INGESTED_DIR, DATABASE_DIR, LOGS_DIR
+from common import STAGGING_DIR, INGESTED_DIR, DATABASE_DIR, LOGS_DIR
 
 def create_datalake():
     """Create the datalake"""

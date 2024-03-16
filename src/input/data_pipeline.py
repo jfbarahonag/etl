@@ -7,8 +7,7 @@ import sqlite3
 
 import pandas as pd
 
-from config import STAGGING_DIR, INGESTED_DIR
-from common import get_database_path
+from common import STAGGING_DIR, INGESTED_DIR, get_database_path
 
 def extract():
     """Extracts data from csv file"""
